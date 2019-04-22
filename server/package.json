@@ -4,7 +4,7 @@
   "description": "App that helps manage and create instagram content",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require @babel/register"
+    "test": "mocha --recursive --require @babel/register"
   },
   "author": "Derek Johnson",
   "license": "MIT",
