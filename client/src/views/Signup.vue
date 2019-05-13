@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import Vue from "vue";
+import { mapState } from "vuex";
 import Joi from "joi";
 // import Loading from '@/components/Loading.vue';
 
@@ -127,6 +127,9 @@ export default {
   },
   components: {
     // Loading,
+  },
+  computed: {
+    ...mapState('users', {loading: 'isCreatePending'})
   },
   methods: {
     signup() {
