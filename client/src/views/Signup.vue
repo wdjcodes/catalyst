@@ -24,7 +24,7 @@
             Enter a valid email address e.g user@example.com
           </small>
         </div>
-        <div class="form-group col-md-1"/>
+        <div class="form-group col-md-1" />
         <div class="form-group col-md-5">
           <label for="confirmEmail">Confirm email</label>
           <input
@@ -60,7 +60,7 @@
             Valid special characters: !#@$%&?*</small
           >
         </div>
-        <div class="form-group col-md-1"/>
+        <div class="form-group col-md-1" />
         <div class="form-group col-md-5">
           <label for="confirmPassword">Confirm Password</label>
           <input
@@ -129,17 +129,21 @@ export default {
     // Loading,
   },
   computed: {
-    ...mapState('users', {loading: 'isCreatePending'})
+    ...mapState("users", { loading: "isCreatePending" })
   },
   methods: {
     signup() {
       this.errorMessage = "";
       this.waiting = true;
       if (this.validUser()) {
-        const user = new this.$FeathersVuex.User({email: this.newUser.email, password: this.newUser.password});
+        const user = new this.$FeathersVuex.User({
+          email: this.newUser.email,
+          password: this.newUser.password
+        });
         // this.signUp(this.newUser.email, this.newUser.password)
-        user.create()
-          .then((response) => {
+        user
+          .create()
+          .then(response => {
             setTimeout(() => {
               console.log(response);
               this.$router.push("/");
@@ -155,7 +159,7 @@ export default {
       this.waiting = false;
     },
     validUser() {
-      if (this.newUser.email !== this.newUser.confirmEmail){
+      if (this.newUser.email !== this.newUser.confirmEmail) {
         this.errorMessage = "Email and confirm email must match 🙈";
         return false;
       }

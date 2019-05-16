@@ -10,7 +10,6 @@ const { auth, FeathersVuex } = feathersVuex(feathersClient, { idField: "_id" });
 
 Vue.use(FeathersVuex);
 
-
 const requireModule = require.context("./services", false, /.js$/);
 const servicePlugins = requireModule
   .keys()

@@ -42,13 +42,13 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   data: () => ({
     cred: {
       email: "",
-      password: "",
+      password: ""
     },
     waiting: false,
     errorMessage: ""
@@ -61,23 +61,25 @@ export default {
       deep: true
     }
   },
+  computed: {
+    ...mapState("auth", ["isAuthenticatePending"])
+  },
   components: {
     // Loading,
   },
   methods: {
-    ...mapActions("auth", {authenticate: "authenticate"}),
+    ...mapActions("auth", { authenticate: "authenticate" }),
     login() {
       this.errorMessage = "";
       this.waiting = true;
-      this.authenticate({strategy: "local", ...this.cred})
-        .then((response) => {
-          console.log(response);
-          this.$router.push("/");
+      this.authenticate({ strategy: "local", ...this.cred })
+        .then(() => {
+          this.$router.push("/dashboard");
         })
-        .catch( error => {
+        .catch(error => {
           this.waiting = false;
           this.errorMessage = error.message;
-        })
+        });
     }
   },
   beforeRouteLeave(to, from, next) {
